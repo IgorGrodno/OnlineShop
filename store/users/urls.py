@@ -1,9 +1,10 @@
 from django.urls import path
-from users.views import login,registration 
+from users.views import login, profile,registration 
 
 app_name='products'
 
 urlpatterns = [
     path('login/',login,name='login'),
-    path('registration/',registration,name='registration')
+    path('registration/',registration,name='registration'),    
+    path('profile/',profile,name='profile')
 ]
