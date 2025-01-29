@@ -6,7 +6,6 @@
 <div class="card mb-3">
     <div class="card-body">
         <h5 class="card-title">{{ basket.product.name }}</h5>
-        <p class="card-text">{{ basket.product.description }}</p>
     </div>
     <ul class="list-group list-group-flush">
         <li class="list-group-item bg-light">
@@ -16,7 +15,7 @@
                 </div>
                 <div class="col-lg-4">{{ basket.sum }} руб.</div>
                 <div class="col-lg-4">
-                    <a href="{% url 'products:basket_remove' basket.id %}">
+                    <a href="#">
                         убрать из корзины
                     </a>
                 </div>
