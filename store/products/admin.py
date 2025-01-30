@@ -14,5 +14,5 @@ class ProductAdmin(admin.ModelAdmin):
 
 class BasketAdmin(admin.TabularInline):
     model = Basket
-    fields = ['product','quantity']
+    fields = ['product', 'quantity']
     extra = 0

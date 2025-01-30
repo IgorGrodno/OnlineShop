@@ -1,51 +1,42 @@
-from django.db import models
-from django.core.mail import send_mail
-from django.contrib.auth.models import AbstractUser
-from django.urls import reverse
-from django.conf import settings
-from django.contrib import admin
-from products.admin import BasketAdmin
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import HttpResponseRedirect
+from django.views.generic.base import TemplateView
+from django.views.generic.list import ListView
+
+from common.views import TitleMixin
+from products.models import Basket, Product, ProductCategory
 
 
-class User(AbstractUser):
-    image = models.ImageField(upload_to='profile_pictures', null=True, blank=True)
-    is_verified_email = models.BooleanField(default=False)
+class IndexView(TitleMixin, TemplateView):
+    template_name = 'products/index.html'
+    title = 'Store'
 
 
-class EmailVerification(models.Model):
-    code = models.UUIDField(unique=True)
-    user = models.ForeignKey(to=User, on_delete=models.CASCADE)
-    created = models.DateField(auto_now_add=True)
-    expiration = models.DateTimeField()
+class ProductsListView(TitleMixin, ListView):
+    model = Product
+    template_name = 'products/products.html'
+    paginate_by = 3
+    title = 'Store - Каталог'
 
-    def __str__(self):
-        return f"EmailVerification object for {self.user.email}"
-    
-    def send_verification_email(self):
-        link = reverse('users:email_verification', kwargs={'email': self.user.email, 'code': self.code})
-        verification_link = f"{settings.DOMAIN_NAME}{link}"
-        subject = f"Подтверждение учетной записи для {self.user.username}"
-        message = (
-            f"Для подтверждения адреса электронной почты для {self.user.email} "
-            f"перейдите по ссылке {verification_link}"
-        )
-        send_mail(
-            subject=subject,
-            message=message,
-            from_email=settings.EMAIL_HOST_USER,
-            recipient_list=[self.user.email],
-            fail_silently=False,
-        )
+    def get_queryset(self):
+        queryset = super(ProductsListView, self).get_queryset()
+        category_id = self.kwargs.get('category_id')
+        return queryset.filter(category_id=category_id) if category_id else queryset
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(ProductsListView, self).get_context_data()
+        context['categories'] = ProductCategory.objects.all()
+        return context
 
 
-@admin.register(User)
-class UserAdmin(admin.ModelAdmin):
-    list_display = ['username']
-    inlines = [BasketAdmin]
+@login_required
+def basket_add(request, product_id):
+    Basket.create_or_update(product_id, request.user)
+    return HttpResponseRedirect(request.META['HTTP_REFERER'])
 
 
-@admin.register(EmailVerification)
-class EmailVerificationAdmin(admin.ModelAdmin):
-    list_display = ['code', 'user', 'expiration']
-    fields = ['code', 'user', 'expiration', 'created']
-    readonly_fields = ['created']
+@login_required
+def basket_remove(request, basket_id):
+    basket = Basket.objects.get(id=basket_id)
+    basket.delete()
+    return HttpResponseRedirect(request.META['HTTP_REFERER'])
