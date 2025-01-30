@@ -16,7 +16,7 @@ class UserLoginView(LoginView):
     form_class = UserLoginForm
 
 
-class UserRegistrationView(SuccessMessageMixin, TitleMixin,  CreateView):
+class UserRegistrationView(SuccessMessageMixin, TitleMixin, CreateView):
     model = User
     form_class = UserRegistrationForm
     template_name = 'users/registration.html'
@@ -32,7 +32,7 @@ class UserProfileView(TitleMixin, UpdateView):
     title = 'Профиль'
 
     def get_success_url(self):
-        return reverse_lazy('users:profile',args=(self.object.id,))
+        return reverse_lazy('users:profile', args=(self.object.id,))
 
 
 def logout(request):
