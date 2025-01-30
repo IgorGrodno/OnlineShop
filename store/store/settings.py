@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'products',
-    'users'
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -133,8 +133,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'users.user'
 LOGIN_URL = '/users/login/'
-LOGIN_REDIRECT_URL='/'
-LOGOUT_REDIRECT_URL='/'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 
 
 EMAIL_PORT = 465
