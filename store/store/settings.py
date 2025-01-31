@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    'debug_toolbar',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -57,6 +58,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'allauth.account.middleware.AccountMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'store.urls'
@@ -169,5 +171,19 @@ SOCIALACCOUNT_PROVIDERS = {
         'SCOPE': [
             'user',
                 ],
+    }
+}
+
+INTERNAL_IPS = [
+    '127.0.0.1',
+    'localhost'
+]
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.redis.RedisCache',
+        'LOCATION': [
+            'redis://127.0.0.1:6379',
+        ],
     }
 }
