@@ -1,0 +1,50 @@
+[
+    {
+        "model": "products.product",
+        "pk": 1,
+        "fields": {
+            "name": "Ноутбук",
+            "description": "Мощный ноутбук для работы и игр. Современный процессор, большая оперативная память.",
+            "price": 1000.00,
+            "quantity": 5,
+            "image": "product_images/1_ikEu2Sk.jpg",
+            "category": 2
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 2,
+        "fields": {
+            "name": "Смартфон",
+            "description": "Современный смартфон с ярким экраном, хорошей камерой и большим аккумулятором.",
+            "price": 2000.00,
+            "quantity": 6,
+            "image": "product_images/2.jpg",
+            "category": 2
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 3,
+        "fields": {
+            "name": "Планшет",
+            "description": "Лёгкий и мощный планшет для работы, учёбы и развлечений. Поддержка стилуса.",
+            "price": 3000.00,
+            "quantity": 8,
+            "image": "product_images/3.jpg",
+            "category": 2
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 4,
+        "fields": {
+            "name": "Телевизор",
+            "description": "Большой 4K телевизор с поддержкой Smart TV, отличное качество изображения и звука.",
+            "price": 4000.00,
+            "quantity": 9,
+            "image": "product_images/4.jpg",
+            "category": 2
+        }
+    }
+]

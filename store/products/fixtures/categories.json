@@ -1,0 +1,34 @@
+[
+    {
+        "model": "products.productcategory",
+        "pk": 1,
+        "fields": {
+            "name": "Электроника",
+            "description": "Товары из категории электроники, включая смартфоны, ноутбуки и аксессуары."
+        }
+    },
+    {
+        "model": "products.productcategory",
+        "pk": 2,
+        "fields": {
+            "name": "Одежда",
+            "description": "Мужская, женская и детская одежда на любой сезон и стиль."
+        }
+    },
+    {
+        "model": "products.productcategory",
+        "pk": 3,
+        "fields": {
+            "name": "Обувь",
+            "description": "Качественная обувь для спорта, прогулок и деловых встреч."
+        }
+    },
+    {
+        "model": "products.productcategory",
+        "pk": 4,
+        "fields": {
+            "name": "Книги",
+            "description": "Художественная, научная и образовательная литература."
+        }
+    }
+]
