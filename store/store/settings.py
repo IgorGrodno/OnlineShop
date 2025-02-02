@@ -21,13 +21,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-pa51ab$brhwe9knm^65_uu$itrg9!$)k6^$19yu#rkuf+r*^(*'
+SECRET_KEY = (
+    'django-insecure-pa51ab$brhwe9knm^65_uu$itrg9!'
+    '$)k6^$19yu#rkuf+r*^(*'
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-DOMAIN_NAME = 'http://localhost:8000'
+ALLOWED_HOSTS = ['*']
+DOMAIN_NAME = 'http://127.0.0.1:8000'
 
 
 # Application definition
@@ -46,6 +49,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.github',
     'products',
+    'orders',
     'users',
 ]
 
@@ -104,16 +108,28 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME': (
+            'django.contrib.auth.password_validation.'
+            'UserAttributeSimilarityValidator'
+        ),
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME': (
+            'django.contrib.auth.password_validation.'
+            'MinimumLengthValidator'
+        ),
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME': (
+            'django.contrib.auth.password_validation.'
+            'CommonPasswordValidator'
+        ),
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME': (
+            'django.contrib.auth.password_validation.'
+            'NumericPasswordValidator'
+        ),
     },
 ]
 
@@ -193,3 +209,16 @@ CELERY_RESULT_BACKENF = 'redis://127.0.0.1:6379'
 CELERY_TASK_SERIALIZER = "json"
 CELERY_ACCEPT_CONTENT = ["json"]
 CELERY_RESULT_BACKEND = None
+
+
+STRIPE_PUBLIC_KEY = (
+    'pk_test_51Qo59FGd6G8xnpylbrQJsPM61UAm8XaTE5Y4dWotw9UxU9VfObW29rvObTr9iLx1'
+    'HJ3h70oTkHze0fxfemxdKSf200pCF8XMnv'
+)
+STRIPE_SECRET_KEY = (
+    'sk_test_51Qo59FGd6G8xnpylDVuqNml3Dx4yESEhD2hof63AWtLD5wJSJPIlbnE8xPpFQsCr'
+    '6fXWkyU597SaUmS2F2L0B8Bm00rqfgOG7N'
+)
+STRIPE_WEBHOOK_SECRET = (
+    'whsec_f4b0db3d8bc5d5dea9e9cb57c653acbae518c8c65b5142d01d638c0668fef081'
+)

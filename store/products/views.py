@@ -9,7 +9,7 @@ from django.core.cache import cache
 
 class IndexView(TitleMixin, TemplateView):
     template_name = 'products/index.html'
-    title = 'Store'
+    title = 'Store'   
 
 
 class ProductsListView(TitleMixin, ListView):
@@ -21,7 +21,9 @@ class ProductsListView(TitleMixin, ListView):
     def get_queryset(self):
         queryset = super(ProductsListView, self).get_queryset()
         category_id = self.kwargs.get('category_id')
-        return queryset.filter(category_id=category_id) if category_id else queryset
+        if category_id:
+            return queryset.filter(category_id=category_id)
+        return queryset
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(ProductsListView, self).get_context_data()
@@ -45,3 +47,4 @@ def basket_remove(request, basket_id):
     basket = Basket.objects.get(id=basket_id)
     basket.delete()
     return HttpResponseRedirect(request.META['HTTP_REFERER'])
+

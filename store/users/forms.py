@@ -32,7 +32,8 @@ class UserRegistrationForm(UserCreationForm):
         'class': 'form-control py-4', 'placeholder': 'Введите имя пользователя'
     }))
     email = forms.CharField(widget=forms.EmailInput(attrs={
-        'class': 'form-control py-4', 'placeholder': 'Введите адрес электронной почты'
+        'class': 'form-control py-4',
+        'placeholder': 'Введите адрес электронной почты'
     }))
     password1 = forms.CharField(widget=forms.PasswordInput(attrs={
         'class': 'form-control py-4', 'placeholder': 'Введите пароль'
@@ -43,7 +44,10 @@ class UserRegistrationForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'username', 'email', 'password1', 'password2']
+        fields = [
+            'first_name', 'last_name', 'username', 'email',
+            'password1', 'password2'
+        ]
 
     def save(self, commit=True):
         user = super().save(commit=True)
