@@ -150,14 +150,14 @@ LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
 
-# EMAIL_PORT = 465
-# EMAIL_HOST_USER = 'ya.mailserver1@yandex.by'
-# EMAIL_HOST_PASSWORD = 'nqcqjbcloctqvgcg'
-# EMAIL_USE_SSL = True
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_HOST = 'smtp.yandex.by'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = 'ya.mailserver1@yandex.by'
+EMAIL_HOST_PASSWORD = 'nqcqjbcloctqvgcg'
+EMAIL_USE_SSL = True
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.yandex.by'
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
@@ -187,3 +187,9 @@ CACHES = {
         ],
     }
 }
+
+CELERY_BROKER_URL = 'redis://127.0.0.1:6379'
+CELERY_RESULT_BACKENF = 'redis://127.0.0.1:6379'
+CELERY_TASK_SERIALIZER = "json"
+CELERY_ACCEPT_CONTENT = ["json"]
+CELERY_RESULT_BACKEND = None
